@@ -21,7 +21,11 @@ const handleURLShortening = async (req, res) => {
     });
 
     const allUrls = await URL.find({});
-    return res.render("home", { urls: allUrls });
+    return res.render("home", {
+      urls: allUrls,
+      id: shortId,
+      baseUrl: process.env.BASE_URL,
+    });
   } catch (error) {
     return res.status(500).json({ message: "Internal Server Error" });
   }
