@@ -1,33 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f0f0;
-        }
-    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sign Up — Shortly</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style> body { font-family: 'Inter', sans-serif; } </style>
 </head>
-<body>
-    <h1 style="text-align: center; margin-top: 50px; color: #333;">
-        Sign Up
-    </h1>
-    <div>
-        <form method="post" action="/user/signup">
-            <label> Username </label>
-            <input type="text" name="username" placeholder="Enter your username">
-            <br><br>
-            <label> Email </label>
-            <input type="email" name="email" placeholder="Enter your email">
-            <br><br>
-            <label> Password </label>
-            <input type="password" name="password" placeholder="Enter your password">
-            <br><br>
-            <button type="submit">Sign Up</button>
-        </form>
+<body class="bg-slate-50 min-h-screen">
+
+    <%- include('partials/navbar') %>
+
+    <div class="flex items-center justify-center min-h-[calc(100vh-65px)]">
+        <div class="bg-white border border-slate-200 rounded-xl shadow-sm p-8 w-full max-w-md">
+
+            <div class="mb-6">
+                <h1 class="text-2xl font-bold text-slate-900">Create an account</h1>
+                <p class="text-slate-500 text-sm mt-1">Start shortening links in seconds</p>
+            </div>
+
+            <% if (locals.error) { %>
+            <div class="bg-red-50 border border-red-100 text-red-600 text-sm px-4 py-3 rounded-lg mb-5">
+                <%= error %>
+            </div>
+            <% } %>
+
+            <form method="POST" action="/user/signup" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1.5">Username</label>
+                    <input type="text" name="username" placeholder="yourname"
+                           class="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1.5">Email</label>
+                    <input type="email" name="email" placeholder="you@example.com"
+                           class="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1.5">Password</label>
+                    <input type="password" name="password" placeholder="••••••••"
+                           class="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm">
+                </div>
+                <button type="submit"
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-lg font-medium text-sm transition-colors mt-2">
+                    Create account
+                </button>
+            </form>
+
+            <p class="text-center text-sm text-slate-500 mt-6">
+                Already have an account?
+                <a href="/login" class="text-blue-600 hover:text-blue-700 font-medium">Sign in</a>
+            </p>
+
+        </div>
     </div>
+
 </body>
-</html>
+</html> 
